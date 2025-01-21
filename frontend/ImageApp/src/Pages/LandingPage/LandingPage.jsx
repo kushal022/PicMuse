@@ -8,7 +8,7 @@ const LandingPage = ()=>{
             <div className="landing-box">
                 <h1>Welcome to your dream Gallery</h1>
                 <p>Discover Stunning images and timeless creativity</p>
-                <button onClick={()=> navigate('/account/signup')} >Explore Gallery</button>
+                <button onClick={()=> navigate('/account/login')} >Explore Gallery</button>
                 {/* <Link className='home-link' to='/home' >Explore Gallery</Link> */}
             </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 const Login = () => {
   const [FormData, setFormData] = useState({
@@ -85,6 +86,7 @@ const Login = () => {
             <input type="password" id="password" name='password' value={FormData.password} onChange={handlerChange} placeholder="Enter your password" />
           </div>
           <button type="submit" className="auth-button">Log In</button>
+          <Link to='/account/signup' >Donn't have an account? Sign up</Link>
         </form>
       </div>
     </div>
