@@ -1,0 +1,53 @@
+.landing-container{
+    background-color: gray;
+    background-image: url(https://media.timeout.com/images/105990233/750/422/image.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.landing-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(238, 238, 135);
+    height: 100%;
+    width: 100%;
+    background-color: rgba(27, 27, 25, 0.808);
+    border-radius: 20px;
+
+    
+}
+
+.landing-box>h1{
+    width: 40rem;
+    text-wrap: wrap;
+    text-align: center;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+}
+.landing-box>p{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.landing-box>.home-link,.landing-box>button{
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    background-color: rgb(223, 205, 44);
+    color: rgb(27, 27, 25);
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    &:hover{
+        background-color: rgba(218, 194, 38, 0.705);
+    }
+}
