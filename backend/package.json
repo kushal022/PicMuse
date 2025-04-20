@@ -6,9 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "kushal jangid",
   "license": "ISC",
-  "description": "",
+  "description": "image App picmuse",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
