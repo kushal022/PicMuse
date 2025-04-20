@@ -90,8 +90,6 @@ app.put('/api/image/:id',async(req,res)=>{
 
 // signup data:
 
-// const secret_key="thisismyseceretekeyfordemoofjsonwebtoken";
-
 //todo------------------------------ Post One User / Signup User: ---------------------------------------------------
 // generate JWT Token: 
 app.post('/api/users/signup',async(req,res)=>{
