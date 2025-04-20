@@ -39,7 +39,7 @@ const ImageList = ({ selectedCategory, onImageClick }) => {
         throw new Error('Access Denied! you do not have any token');
       }
       //fetch image data from server
-      const response = await axios.get('http://localhost:3000/api/protected/image', {
+      const response = await axios.get('http://localhost:3000/api/image/get-protected-image', {
         headers: { Authorization: `Bearer ${token}` }
       });
       // const response = await fetch("http://localhost:3000/api/protected/image");
@@ -115,7 +115,7 @@ const ImageList = ({ selectedCategory, onImageClick }) => {
     try {
       console.log(editForm);
 
-      const response = await axios.put(`http://localhost:3000/api/image/${editImage._id}`, editForm);
+      const response = await axios.put(`http://localhost:3000/api/image/update-image/${editImage._id}`, editForm);
       alert(response.data.message);
       setEditImage(null);
       fetchImage();

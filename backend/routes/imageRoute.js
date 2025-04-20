@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router();
+const jwt = require('jsonwebtoken')
+
 
 const ImageCollection = require('../models/imagesModel')
 
@@ -42,7 +44,7 @@ router.post('/add-all-image',async(req,res)=>{
 
 
 //todo------------------------------ PUT || Update Image: use params ---------------------------------------------------
-router.put('/update-image:id',async(req,res)=>{
+router.put('/update-image/:id',async(req,res)=>{
     try{
         const {id} = req.params;
         // console.log(req.body)
@@ -60,6 +62,26 @@ router.put('/update-image:id',async(req,res)=>{
     }
     catch(e){
         console.log('Error in updating image..',e);
+    }
+})
+
+//todo------------------------------ DELETE || Delete Image: use params ---------------------------------------------------
+router.delete('/update-image/:id',async(req,res)=>{
+    try{
+        const {id} = req.params;
+        // console.log(req.body)
+        // const {name,description} = req.body;
+        // console.log(name,description)
+        const imageData = req.body;
+        const deletedImage = await ImageCollection.findByIdAndDelete({_id:id}); // return new data in res
+        console.log(deletedImage)
+        if(!deletedImage){
+            return res.status(404).json({message:"Image not found!"})
+        }
+        return res.status(200).json({message:"Image Deleted successfully"})
+    }
+    catch(e){
+        console.log('Error in Deleting image..',e);
     }
 })
 

@@ -23,7 +23,7 @@ const Login = () => {
     // then redirect to the home page or gallery page
     try{
       console.log(FormData);
-      const response = await axios.post('http://localhost:3000/api/users/login', FormData)
+      const response = await axios.post('http://localhost:3000/api/user/user-login', FormData)
       console.log(response.data.message);
       alert(response.data.message)
       setFormData({
