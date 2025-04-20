@@ -17,7 +17,7 @@ const UserCollection = require('./models/userModel.js')
 
 app.use(express.json()); // middleware for parsing json data
 
-//------------------------------ Post One Image: ---------------------------------------------------
+//todo------------------------------ Post One Image: ---------------------------------------------------
 // post images: 
 // app.post('/api/image',async(req,res)=>{
 //     try{
@@ -40,7 +40,7 @@ app.use(express.json()); // middleware for parsing json data
 //     }
 // })
 
-//------------------------------ Post All/Bulk Images: ---------------------------------------------------
+//todo------------------------------ Post All/Bulk Images: ---------------------------------------------------
 //post all images: .create() method
 app.post('/api/image',async(req,res)=>{
     try{
@@ -54,7 +54,7 @@ app.post('/api/image',async(req,res)=>{
 })
 
 
-//------------------------------ Update Image: use params ---------------------------------------------------
+//todo------------------------------ Update Image: use params ---------------------------------------------------
 app.put('/api/image/:id',async(req,res)=>{
     try{
         const {id} = req.params;
@@ -63,7 +63,8 @@ app.put('/api/image/:id',async(req,res)=>{
         // console.log(name,description)
         const updatedData = req.body;
         // const updatedImage = await ImageCollection.findOneAndUpdate({_id:id},{$set:{name,description}},{new:true});
-        const updatedImage = await ImageCollection.findOneAndUpdate({_id:id},updatedData,{new:true});
+        // const updatedImage = await ImageCollection.findOneAndUpdate({_id:id},updatedData); // return old data in res
+        const updatedImage = await ImageCollection.findOneAndUpdate({_id:id},updatedData,{new:true}); // return new data in res
         // console.log(updatedImage)
         if(!updatedImage){
             return res.status(404).json({message:"Image not found!"})
@@ -75,7 +76,7 @@ app.put('/api/image/:id',async(req,res)=>{
     }
 })
 
-//------------------------------ Get All Images: ---------------------------------------------------
+//todo------------------------------ Get All Images: ---------------------------------------------------
 // get all images:
 // app.get('/api/image',async(req,res)=>{
 //     try{
@@ -89,9 +90,9 @@ app.put('/api/image/:id',async(req,res)=>{
 
 // signup data:
 
-const secret_key="thisismyseceretekeyfordemoofjsonwebtoken";
+// const secret_key="thisismyseceretekeyfordemoofjsonwebtoken";
 
-//------------------------------ Post One User / Signup User: ---------------------------------------------------
+//todo------------------------------ Post One User / Signup User: ---------------------------------------------------
 // generate JWT Token: 
 app.post('/api/users/signup',async(req,res)=>{
     try{
@@ -139,7 +140,7 @@ app.post('/api/users/signup',async(req,res)=>{
         })
         await newUser.save();
         // Generate JWT token:
-        const token = jwt.sign({ id: newUser._id }, secret_key, { expiresIn: '1h' });
+        const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
         console.log(token)
         res.status(200).json({token,message:'User data saved successfully'})
     }
@@ -148,7 +149,7 @@ app.post('/api/users/signup',async(req,res)=>{
     }
 })
 
-//------------------------------ Login User: ---------------------------------------------------
+//todo------------------------------ Login User: ---------------------------------------------------
 // login data: also generate JWT Token
 app.post('/api/users/login',async(req,res)=>{
     try{
@@ -177,7 +178,7 @@ app.post('/api/users/login',async(req,res)=>{
         
         // Generate JWT token:
         // const token = jwt.sign({ username: existingUser.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
-        const token = jwt.sign({ username: existingUser.username }, secret_key, { expiresIn: '1h' });
+        const token = jwt.sign({ username: existingUser.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
         console.log(token);
         // res.json({token});
 
@@ -191,14 +192,14 @@ app.post('/api/users/login',async(req,res)=>{
         }
 })
 
-//------------------------------ Get All Images: with JWT Token: ---------------------------------------------------
+//todo------------------------------ Get All Images: with JWT Token: ---------------------------------------------------
 app.get('/api/protected/image',(req,res)=>{
     const authHeader = req.headers.authorization;
     if(!authHeader){
         return res.status(401).json({message: 'Authorization header missing'});
     }
     const token = authHeader.split(' ')[1];
-    jwt.verify(token,secret_key,async(err,decoded)=>{
+    jwt.verify(token,process.env.SECRET_KEY,async(err,decoded)=>{
         if(err){
             return res.status(403).json({message: 'invalid or expired token'})
         }
@@ -219,7 +220,7 @@ app.get('/api/protected/image',(req,res)=>{
 //     }
 // })
 
-//------------------------------ Start Server ---------------------------------------------------
+//todo------------------------------ Start Server ---------------------------------------------------
 // start server:
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
